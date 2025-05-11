@@ -5,15 +5,15 @@ import { PostErrorComponent } from '~/components/PostError'
 
 export const Route = createFileRoute('/posts/$postId')({
   loader: ({ params: { postId } }) => fetchPost({ data: postId }),
-  head:(ctx) => {
-    return {
-      meta: [
-        {
-          title: ctx.loaderData.title,
-        },
-      ],
-    };
-  },
+  // head:(ctx) => {
+  //   return {
+  //     meta: [
+  //       {
+  //         title: ctx.loaderData.title,
+  //       },
+  //     ],
+  //   };
+  // },
   errorComponent: PostErrorComponent,
   component: PostComponent,
   notFoundComponent: () => {
@@ -26,6 +26,7 @@ function PostComponent() {
 
   return (
     <div className="space-y-2">
+      <title>{post.title}</title>
       <h4 className="text-xl font-bold underline">{post.title}</h4>
       <div className="text-sm">{post.body}</div>
       <Link
